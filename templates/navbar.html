@@ -1,0 +1,23 @@
+{% load staticfiles %}
+		<div class="container" id="header">
+			<div class="row">
+				<div class="two columns" id="header-image">
+					<img class="u-max-full-width" src="{% static "images/placeholder.png" %}" alt>
+				</div>
+				<div class="two columns" id="header-caption">
+					<h4>GhostCat!</h4>
+				</div>
+				<div class="eight columns" id="header-links">
+					<ul>
+						<li><a class="button" href="{% url 'Homepage' %}">Homepage</a></li>
+					{% if request.user.is_authenticated %}
+						<li><a class="button" href="{% url 'Following' %}">Following</a></li>
+						<li><a class="button" href="{% url 'Post' %}">Post</a></li>
+						<li><a class="button" href="{% url 'Logout' %}">Logout</a></li>
+					{% else %}
+						<li><a class="button" href="{% url 'Login' %}">Login / Register</a></li>
+					{% endif %}
+					</ul>
+				</div>
+			</div>
+		</div>

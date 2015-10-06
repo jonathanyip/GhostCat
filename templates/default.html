@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>GhostCat!{% block title %}{% endblock %}</title>
+
+		<meta name="description" content="GhostCats are awesome!">
+		<meta name="author" content="GhostCats">
+
+		<link href="https://fonts.googleapis.com/css?family=Merriweather:400,400italic,700,700italic" rel="stylesheet">
+		<link href="{% static "css/normalize.min.css" %}" rel="stylesheet">
+		<link href="{% static "css/skeleton.min.css" %}" rel="stylesheet">
+		<link href="{% static "css/style.css" %}" rel="stylesheet">
+	</head>
+	<body>
+		{% block content %}{% endblock %}
+		<div class="container" id="footer">
+			<div class="row">
+				<div class="twelve columns">
+					<p>Made by ghost cats. (<a href="https://www.bitbucket.org/JonathanYip/ghostcat/" target="_blank">Bitbucket</a>)</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

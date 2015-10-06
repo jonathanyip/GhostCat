@@ -1,0 +1,32 @@
+{% extends "default.html" %}
+{% block content %}
+		{% include "navbar.html" %}
+		<div class="container">
+			<div class="row">
+				<div class="six columns">
+					<h5>Login</h5>
+					{% if login_error %}<p class="error">{{ login_error|safe }}</p>{% endif %}
+					<form action="#" method="POST">{% csrf_token %}
+						<label for="form-login-username">Username</label>
+						<input class="u-full-width" type="text" placeholder="GhostCat" name="form-login-username" id="form-login-username">
+						<label for="form-login-password">Password</label>
+						<input class="u-full-width" type="password" placeholder="Password" name="form-login-password" id="form-login-password">
+						<input class="button-primary" type="submit" value="Login!">
+					</form>
+				</div>
+				<div class="six columns">
+					<h5>Register</h5>
+					{% if register_error %}<p class="error">{{ register_error|safe }}</p>{% endif %}
+					<form action="#" method="POST">{% csrf_token %}
+						<label for="form-register-email">Email</label>
+						<input class="u-full-width" type="email" placeholder="ghostcat@example.com" name="form-register-email" id="form-register-email">
+						<label for="form-register-username">Username</label>
+						<input class="u-full-width" type="text" placeholder="GhostCat" name="form-register-username" id="form-register-username">
+						<label for="form-register-password">Password</label>
+						<input class="u-full-width" type="password" placeholder="Password" id="form-register-password" name="form-register-password">
+						<input class="button-primary" type="submit" value="Register!">
+					</form>
+				</div>
+			</div>
+		</div>
+{% endblock %}

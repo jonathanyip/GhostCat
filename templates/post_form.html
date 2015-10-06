@@ -1,0 +1,17 @@
+{% extends "default.html" %}
+{% block content %}
+		{% include "navbar.html" %}
+		<div class="container">
+			<div class="row">
+				<div class="twelve columns">
+					<h5>Post something</h5>
+					{% if post_error %}<p class="error">{{ post_error|safe }}</p>{% endif %}
+					<form action="#" method="POST">{% csrf_token %}
+						<textarea class="u-full-width" placeholder="Your post here." name="form-post" id="form-post"></textarea>
+						<label id="post-warning">Hey! Know that these posts are unremovable!<br>So think twice about posting!</label>
+						<input class="button-primary" type="submit" value="Post it!">
+					</form>
+				</div>
+			</div>
+		</div>
+{% endblock %}

@@ -1,0 +1,5 @@
+						<li>
+							<p>{{ post_text }}</p>
+							<p class="post-meta"><strong>Posted by <em>{{ post_author }}</em></strong> on {{ post.post_date|date:"M j, Y" }}.</p>
+							<p class="post-meta">{% if request.user.is_authenticated %}<a href="{% url 'Follow' post_author %}">Follow</a>{% endif %}</p>
+						</li>
