@@ -15,20 +15,15 @@
 		<link href="css/style.css" rel="stylesheet">
 	</head>
 	<body>
-		<div class="container" id="intro-header">
+		<div class="container" id="header">
 			<div class="row">
-				<div class="six columns" id="intro-header-image">
+				<div class="two columns" id="header-image">
 					<img class="u-max-full-width" src="images/placeholder.png" alt>
 				</div>
-				<div class="six columns" id="intro-header-caption">
+				<div class="two columns" id="header-caption">
 					<h4>GhostCat!</h4>
-					<p>A more elegant microblog for a more elegant world.</p>
 				</div>
-			</div>
-		</div>
-		<div class="container" id="intro-links">
-			<div class="row">
-				<div class="twelve columns">
+				<div class="eight columns" id="header-links">
 					<ul>
 						<li><a class="button" href="#">Following</a></li>
 						<li><a class="button" href="#">Post</a></li>
@@ -37,22 +32,15 @@
 				</div>
 			</div>
 		</div>
-		<div class="container" id="posts">
+		<div class="container">
 			<div class="row">
 				<div class="twelve columns">
-					<h5>Latest Posts</h5>
-					<ul>
-						<li>
-							<p>This is a post!</p>
-							<p class="post-meta"><strong>Posted by <em>Username</em></strong> on October 5, 2015.</p>
-							<p class="post-meta"><a href="#">Follow</a> / <a href="#">Reblog</a></p>
-						</li>
-						<li>
-							<p>This is another post!</p>
-							<p class="post-meta"><strong>Posted by <em>Username</em></strong> on October 5, 2015.</p>
-							<p class="post-meta"><a href="#">Follow</a> / <a href="#">Reblog</a></p>
-						</li>
-					</ul>
+					<h5>Post something</h5>
+					<form action="post" method="POST">
+						<textarea class="u-full-width" placeholder="Your post here." name="form-post" id="form-post"></textarea>
+						<label id="post-warning">Hey! Know that these posts are unremovable!<br>So think twice about posting!</label>
+						<input class="button-primary" type="submit" value="Post it!">
+					</form>
 				</div>
 			</div>
 		</div>

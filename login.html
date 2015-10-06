@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>GhostCat!</title>
+
+		<meta name="description" content="GhostCats are awesome!">
+		<meta name="author" content="GhostCat">
+
+		<link href="https://fonts.googleapis.com/css?family=Merriweather:400,400italic,700,700italic" rel="stylesheet">
+		<link href="css/normalize.min.css" rel="stylesheet">
+		<link href="css/skeleton.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container" id="header">
+			<div class="row">
+				<div class="two columns" id="header-image">
+					<img class="u-max-full-width" src="images/placeholder.png" alt>
+				</div>
+				<div class="two columns" id="header-caption">
+					<h4>GhostCat!</h4>
+				</div>
+				<div class="eight columns" id="header-links">
+					<ul>
+						<li><a class="button" href="#">Login / Register</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="six columns">
+					<h5>Login</h5>
+					<form action="login" method="POST">
+						<label for="form-login-username">Username</label>
+						<input class="u-full-width" type="text" placeholder="GhostCat" name="form-login-username" id="form-login-username">
+						<label for="form-login-password">Password</label>
+						<input class="u-full-width" type="password" placeholder="Password" name="form-login-password" id="form-login-password">
+						<input class="button-primary" type="submit" value="Login!">
+					</form>
+				</div>
+				<div class="six columns">
+					<h5>Register</h5>
+					<p class="error">Woah! Something's wrong.</p>
+					<form action="register" method="POST">
+						<label for="form-register-email">Email</label>
+						<input class="u-full-width" type="email" placeholder="ghostcat@example.com" name="form-register-email" id="form-register-email">
+						<label for="form-register-username">Username</label>
+						<input class="u-full-width" type="email" placeholder="GhostCat" name="form-register-username" id="form-register-username">
+						<label for="form-register-password">Password</label>
+						<input class="u-full-width" type="password" placeholder="Password" id="form-register-password" name="form-register-password">
+						<input class="button-primary" type="submit" value="Register!">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="container" id="footer">
+			<div class="row">
+				<div class="twelve columns">
+					<p>Made by ghost cats. (<a href="https://www.bitbucket.org/JonathanYip/ghostcat/" target="_blank">Bitbucket</a>)</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
