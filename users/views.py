@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from posts.models import Post
+from .models import UserProfile
 
 def userLogin(request):
 	if request.user.is_authenticated():
@@ -32,6 +33,10 @@ def userLogin(request):
 		password = escape(request.POST['form-register-password'])
 		if not User.objects.filter(email = email).exists() and not User.objects.filter(username = username).exists():
 			user = User.objects.create_user(username=username, email=email, password=password)
+			
+			u = UserProfile(user=user)
+			u.save()
+			
 			user = authenticate(username=username, password=password)
 			login(request, user)
 			return redirect('Homepage')
@@ -45,20 +50,40 @@ def userLogout(request):
 	logout(request)
 	return redirect('Homepage')
 
-def userFollow(request, username):
-	return HttpResponse("Follow")
+def userFollow(request, userpk):
+	if not request.user.is_authenticated():
+		return redirect('Login')
+	
+	otherUser = User.objects.get(pk=userpk)
+	thisUser = request.user.userprofile
+	if not thisUser.following.filter(pk=userpk):
+		thisUser.following.add(otherUser)
+		thisUser.save()
+	
+	return redirect('Following')
+
+def userUnfollow(request, userpk):
+	if not request.user.is_authenticated():
+		return redirect('Login')
+	otherUser = User.objects.get(pk=userpk)
+	thisUser = request.user.userprofile
+	if thisUser.following.filter(pk=userpk):
+		thisUser.following.remove(otherUser)
+	thisUser.save()
+	
+	return redirect('Following')
 
 def userPost(request):
 	if not request.user.is_authenticated():
 		return redirect('Login')
 	
 	if 'form-post' in request.POST:
-		text = escape(request.POST['form-post'])
+		text = request.POST['form-post']
 		if(len(text) > 140):
 			context = { 'post_error': 'The post needs to be 140 characters or less!' }
 			return render(request, 'post_form.html', context)
 		post = Post(post_text=text, post_author=request.user)
 		post.save()
 		return redirect('Homepage')
-		
-	return render(request, 'post_form.html')
+	
+	return render(request, 'postForm.html')

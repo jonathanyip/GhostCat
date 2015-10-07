@@ -1,5 +1,5 @@
 						<li>
 							<p>{{ post_text }}</p>
 							<p class="post-meta"><strong>Posted by <em>{{ post_author }}</em></strong> on {{ post.post_date|date:"M j, Y" }}.</p>
-							<p class="post-meta">{% if request.user.is_authenticated %}<a href="{% url 'Follow' post_author %}">Follow</a>{% endif %}</p>
+							<p class="post-meta">{% if request.user.is_authenticated %}{% if post.is_following %}<a href="{% url 'Unfollow' post_author_pk %}">Unfollow</a>{% else %}<a href="{% url 'Follow' post_author_pk %}">Follow</a>{% endif %}{% endif %} / <a href="{% url 'PostLink' post_pk %}">Link</a></p>
 						</li>

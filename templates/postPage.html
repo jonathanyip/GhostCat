@@ -1,0 +1,18 @@
+{% extends "default.html" %}
+{% block content %}
+		{% include "navbar.html" %}
+		<div class="container" id="posts">
+			<div class="row">
+				<div class="twelve columns">
+					{% if header %}<h5>{{ header }}</h5>{% endif %}
+					<ul>
+						{% for post in posts %}
+							{% include "post.html" with post_text=post.post_text post_author=post.post_author.get_username post_author_pk=post.post_author.pk post_date=post.post_date|date:"M j, Y" post_pk=post.pk %}
+						{% empty %}
+							<p>You are following... nobody. Check out the <a href="{% url 'Homepage' %}">homepage</a>!</p>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+{% endblock %}

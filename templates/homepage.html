@@ -34,7 +34,9 @@
 					<h5>Latest Posts</h5>
 					<ul>
 					{% for post in latest_posts %}
-						{% include "post.html" with post_text=post.post_text post_author=post.post_author.get_username post_date=post.post_date|date:"M j, Y" %}
+						{% include "post.html" with post_text=post.post_text post_author=post.post_author.get_username post_author_pk=post.post_author.pk post_date=post.post_date|date:"M j, Y"  post_pk=post.pk %}
+					{% empty %}
+						<p>There's nothing here!</p>
 					{% endfor %}
 					</ul>
 				</div>
