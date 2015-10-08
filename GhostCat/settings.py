@@ -25,7 +25,7 @@ SECRET_KEY = 'r1lla4-p%^rr#pfu=#)n)0ncaj*wu%#p4jw6)e0^n#_!e+97$4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -75,13 +75,8 @@ WSGI_APPLICATION = 'GhostCat.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+import dj_database_url
+DATABASES = { 'default': dj_database_url.parse('postgres://uqbfsntorsnsgf:cxjCyLET6off2hMdUZdTIxBX5u@ec2-54-197-241-239.compute-1.amazonaws.com:5432/dc2tkm0prio7r0') }
 
 
 # Internationalization
@@ -102,9 +97,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static/"),
 )
 
 AUTH_PROFILE_MODULE = 'users.UserProfile'
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
