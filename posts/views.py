@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Post
 from users.models import UserProfile
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
 
 # Handles the request for the homepage
 def homepage(request):
@@ -31,7 +33,10 @@ def following(request):
 
 # Handles single post pages (the hyperlink)
 def postLink(request, postLinkPk):
-    post = Post.objects.get(pk=postLinkPk)
+    try:
+        post = Post.objects.get(pk=postLinkPk)
+    except ObjectDoesNotExist:
+        raise Http404("This post does not exist!")
     
     if request.user.is_authenticated():
         post.is_following = request.user.userprofile.following.filter(pk=post.post_author.pk)

@@ -1,4 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
 from django.utils.html import escape
 from django.contrib.auth.models import User
 from django.http import HttpResponse
@@ -58,7 +60,13 @@ def userFollow(request, userpk):
 	if not request.user.is_authenticated():
 		return redirect('Login')
 	
-	otherUser = User.objects.get(pk=userpk)
+	# Checks if this user exists first
+	try:
+		otherUser = User.objects.get(pk=userpk)
+	except ObjectDoesNotExist:
+		raise Http404("This user does not exist!")
+	
+	# If we are not following them, follow them
 	thisUser = request.user.userprofile
 	if not thisUser.following.filter(pk=userpk):
 		thisUser.following.add(otherUser)
@@ -70,7 +78,14 @@ def userFollow(request, userpk):
 def userUnfollow(request, userpk):
 	if not request.user.is_authenticated():
 		return redirect('Login')
-	otherUser = User.objects.get(pk=userpk)
+	
+	# Checks if this user exists first
+	try:
+		otherUser = User.objects.get(pk=userpk)
+	except ObjectDoesNotExist:
+		raise Http404("This user does not exist!")
+	
+	# If we are following them, unfollow them
 	thisUser = request.user.userprofile
 	if thisUser.following.filter(pk=userpk):
 		thisUser.following.remove(otherUser)
