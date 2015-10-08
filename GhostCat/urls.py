@@ -17,6 +17,8 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from posts import views
 
+handler404 = 'posts.views.fourohfour'
+
 urlpatterns = [
     url(r'^$', views.homepage, name='Homepage'),
     url(r'^users/', include('users.urls')),

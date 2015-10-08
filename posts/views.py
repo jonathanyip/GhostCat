@@ -17,7 +17,7 @@ def homepage(request):
 # Handles the "following" page (posts by people you follow)
 def following(request):
     if not request.user.is_authenticated():
-        redirect('Homepage')
+        return redirect('Homepage')
     
     # This next line is pure magic...
     # How did it even know what I meant? Woah.
@@ -39,3 +39,7 @@ def postLink(request, postLinkPk):
     context = { 'posts': {post} }
     
     return render(request, 'postPage.html', context)
+
+# Does 404 pages
+def fourohfour(request):
+	return render(request, 'fourohfour.html')

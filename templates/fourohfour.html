@@ -1,0 +1,12 @@
+{% extends "default.html" %}
+{% block content %}
+		{% include "navbar.html" %}
+		<div class="container" id="posts">
+			<div class="row">
+				<div class="twelve columns">
+					<h5>You seem lost.</h5>
+					<p><a href="{% url 'Homepage' %}">Click here</a> to find your way back.</p>
+				</div>
+			</div>
+		</div>
+{% endblock %}
