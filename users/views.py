@@ -34,6 +34,9 @@ def userLogin(request):
 		email = escape(request.POST['form-register-email'])
 		username = escape(request.POST['form-register-username'])
 		password = escape(request.POST['form-register-password'])
+		if not username or not password or not email:
+			context = { 'register_error': 'Woah! You forgot to fill out something!' }
+			return render(request, 'login.html', context)
 		if not User.objects.filter(email = email).exists() and not User.objects.filter(username = username).exists():
 			user = User.objects.create_user(username=username, email=email, password=password)
 			
