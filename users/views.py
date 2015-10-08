@@ -6,11 +6,12 @@ from django.shortcuts import render, redirect
 from posts.models import Post
 from .models import UserProfile
 
+# Handle Logins and Registers (the pages and POST requests)
 def userLogin(request):
 	if request.user.is_authenticated():
 		return redirect('Homepage')
 	
-	# Handle Logins
+	# Do logins
 	if 'form-login-username' in request.POST and 'form-login-password' in request.POST:
 		username = escape(request.POST['form-login-username'])
 		password = escape(request.POST['form-login-password'])
@@ -26,7 +27,7 @@ def userLogin(request):
 			context = { 'login_error': 'Woah! Cannot log you in!<br>Check your password/username.' }
 			return render(request, 'login.html', context)
 	
-	# Handle Registers
+	# Do registers
 	if 'form-register-email' in request.POST and 'form-register-username' in request.POST and 'form-register-password' in request.POST:
 		email = escape(request.POST['form-register-email'])
 		username = escape(request.POST['form-register-username'])
@@ -44,12 +45,15 @@ def userLogin(request):
 			context = { 'register_error': 'Woah! This username/email combo exists already!' }
 			return render(request, 'login.html', context)
 	
+	# No POST, so just show the normal page
 	return render(request, 'login.html')
 
+# Logs out a user
 def userLogout(request):
 	logout(request)
 	return redirect('Homepage')
 
+# Handles a follow request
 def userFollow(request, userpk):
 	if not request.user.is_authenticated():
 		return redirect('Login')
@@ -62,6 +66,7 @@ def userFollow(request, userpk):
 	
 	return redirect('Following')
 
+# Handles an unfollow request
 def userUnfollow(request, userpk):
 	if not request.user.is_authenticated():
 		return redirect('Login')
@@ -73,6 +78,7 @@ def userUnfollow(request, userpk):
 	
 	return redirect('Following')
 
+# Handles the posting form
 def userPost(request):
 	if not request.user.is_authenticated():
 		return redirect('Login')
