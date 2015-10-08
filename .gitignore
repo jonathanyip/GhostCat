@@ -2,6 +2,7 @@ calhost
 /virtualenv
 
 .DS_STORE
+Thumbs.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
